@@ -1,8 +1,8 @@
 package com.api.the_social_media.controller;
 
-import com.api.the_social_media.DTOS.JwtDTO;
-import com.api.the_social_media.DTOS.LoginDTO;
-import com.api.the_social_media.DTOS.RegisterDTO;
+import com.api.the_social_media.DTOS.requests.JwtDTO;
+import com.api.the_social_media.DTOS.requests.LoginDTO;
+import com.api.the_social_media.DTOS.requests.RegisterDTO;
 import com.api.the_social_media.domain.user.User;
 import com.api.the_social_media.service.security.auth.AuthService;
 import com.api.the_social_media.service.security.token.TokenProviderService;

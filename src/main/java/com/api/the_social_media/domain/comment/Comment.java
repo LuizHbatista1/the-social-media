@@ -1,6 +1,6 @@
 package com.api.the_social_media.domain.comment;
 
-import com.api.the_social_media.DTOS.CommentDTO;
+import com.api.the_social_media.DTOS.requests.CommentDTO;
 import com.api.the_social_media.domain.post.Post;
 import com.api.the_social_media.domain.user.User;
 import jakarta.persistence.*;

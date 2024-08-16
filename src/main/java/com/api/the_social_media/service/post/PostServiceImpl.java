@@ -1,14 +1,17 @@
 package com.api.the_social_media.service.post;
 
-import com.api.the_social_media.DTOS.PostDTO;
+import com.api.the_social_media.DTOS.requests.PostDTO;
 import com.api.the_social_media.domain.post.Post;
 import com.api.the_social_media.domain.user.User;
 import com.api.the_social_media.repositories.PostRepository;
 import com.api.the_social_media.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
@@ -26,6 +29,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public LocalDateTime getLocalDateTime() {
+       return LocalDateTime.now();
+    }
+
+    @Override
     public Post createPost(PostDTO postDTO) {
 
         User sender = userService.findUserById(postDTO.userId());
@@ -33,7 +41,7 @@ public class PostServiceImpl implements PostService {
         newPost.setUserId(sender);
         newPost.setContent(newPost.getContent());
         newPost.setQuantityLike(newPost.getQuantityLike());
-        newPost.setDateTime(newPost.getDateTime());
+        newPost.setDateTime(getLocalDateTime());
         this.savePost(newPost);
         return newPost;
 

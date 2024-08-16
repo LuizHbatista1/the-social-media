@@ -1,6 +1,6 @@
 package com.api.the_social_media.domain.user;
 
-import com.api.the_social_media.DTOS.RegisterDTO;
+import com.api.the_social_media.DTOS.requests.RegisterDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

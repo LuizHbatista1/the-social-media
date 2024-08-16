@@ -1,6 +1,6 @@
 package com.api.the_social_media.service.comment;
 
-import com.api.the_social_media.DTOS.CommentDTO;
+import com.api.the_social_media.DTOS.requests.CommentDTO;
 import com.api.the_social_media.domain.comment.Comment;
 import com.api.the_social_media.domain.post.Post;
 import com.api.the_social_media.domain.user.User;
@@ -10,15 +10,17 @@ import com.api.the_social_media.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class CommentImpl implements CommentService {
+public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
     private final UserServiceImpl userService;
     private final PostServiceImpl postService;
 
     @Autowired
-    public CommentImpl(CommentRepository commentRepository, UserServiceImpl userService, PostServiceImpl postService) {
+    public CommentServiceImpl(CommentRepository commentRepository, UserServiceImpl userService, PostServiceImpl postService) {
         this.commentRepository = commentRepository;
         this.userService = userService;
         this.postService = postService;
@@ -42,5 +44,10 @@ public class CommentImpl implements CommentService {
 
         this.commentRepository.save(comment);
 
+    }
+
+    @Override
+    public List<Comment> findCommentsByPostId(Long postId) {
+        return commentRepository.findByPostId(postService.findPostById(postId));
     }
 }

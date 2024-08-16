@@ -1,6 +1,6 @@
 package com.api.the_social_media.service.security.auth;
 
-import com.api.the_social_media.DTOS.RegisterDTO;
+import com.api.the_social_media.DTOS.requests.RegisterDTO;
 import com.api.the_social_media.domain.user.User;
 import com.api.the_social_media.repositories.UserRepository;
 import org.jose4j.jwt.consumer.InvalidJwtException;

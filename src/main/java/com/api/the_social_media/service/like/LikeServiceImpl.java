@@ -1,6 +1,6 @@
 package com.api.the_social_media.service.like;
 
-import com.api.the_social_media.DTOS.LikeDTO;
+import com.api.the_social_media.DTOS.requests.LikeDTO;
 import com.api.the_social_media.domain.like.Like;
 import com.api.the_social_media.domain.post.Post;
 import com.api.the_social_media.domain.user.User;
@@ -32,6 +32,7 @@ public class LikeServiceImpl implements LikeService {
         Like newLike = new Like(likeDTO);
         newLike.setPostId(likePostId);
         newLike.setUserId(sender);
+        addLikeAtPost(likePostId);
         this.saveLike(newLike);
         return newLike;
 
@@ -41,6 +42,14 @@ public class LikeServiceImpl implements LikeService {
     public void saveLike(Like like) {
 
         this.likeRepository.save(like);
+
+    }
+
+    @Override
+    public Post addLikeAtPost(Post post) {
+        
+        post.setQuantityLike(post.getQuantityLike() + 1);
+        return post;
 
     }
 }

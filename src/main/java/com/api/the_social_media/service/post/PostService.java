@@ -1,8 +1,9 @@
 package com.api.the_social_media.service.post;
 
-import com.api.the_social_media.DTOS.PostDTO;
+import com.api.the_social_media.DTOS.requests.PostDTO;
 import com.api.the_social_media.domain.post.Post;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface PostService {
@@ -12,6 +13,8 @@ public interface PostService {
     Post createPost(PostDTO postDTO);
 
     void savePost(Post post);
+
+    LocalDateTime getLocalDateTime();
 
     List<Post>getPostByUser(Long id);
 

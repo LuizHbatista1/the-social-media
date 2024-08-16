@@ -1,6 +1,6 @@
 package com.api.the_social_media.domain.like;
 
-import com.api.the_social_media.DTOS.LikeDTO;
+import com.api.the_social_media.DTOS.requests.LikeDTO;
 import com.api.the_social_media.domain.post.Post;
 import com.api.the_social_media.domain.user.User;
 import jakarta.persistence.*;

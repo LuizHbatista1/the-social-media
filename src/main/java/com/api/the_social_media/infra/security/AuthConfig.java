@@ -32,6 +32,10 @@ public class AuthConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/apiV1/post").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/apiV1/like").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/apiV1/comment").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/apiV1/feed").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

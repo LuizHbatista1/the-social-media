@@ -1,6 +1,6 @@
 package com.api.the_social_media.domain.post;
 
-import com.api.the_social_media.DTOS.PostDTO;
+import com.api.the_social_media.DTOS.requests.PostDTO;
 import com.api.the_social_media.domain.user.User;
 import jakarta.persistence.*;
 
@@ -29,6 +29,7 @@ public class Post {
 
         this.userId = getUserId();
         this.content = data.content();
+        this.quantityLike = data.quantityLike();
         this.dateTime = data.dateTime();
     }
 
