@@ -6,6 +6,7 @@ import com.api.the_social_media.service.post.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class PostController {
     }
 
     @PostMapping("/apiV1/post")
+    // @PreAuthorize("hasAuthority('SCOPE_COMMON')")
     public ResponseEntity<Post>createPost(@RequestBody PostDTO postDTO){
 
         Post newPost = postService.createPost(postDTO);

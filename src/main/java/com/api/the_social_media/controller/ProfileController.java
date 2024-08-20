@@ -1,42 +1,36 @@
 package com.api.the_social_media.controller;
 
-import com.api.the_social_media.DTOS.requests.CommentDTO;
-import com.api.the_social_media.DTOS.requests.PostDTO;
 import com.api.the_social_media.DTOS.responses.CommentResponseDTO;
 import com.api.the_social_media.DTOS.responses.PostResponseDTO;
-import com.api.the_social_media.domain.comment.Comment;
 import com.api.the_social_media.domain.post.Post;
 import com.api.the_social_media.service.comment.CommentServiceImpl;
-import com.api.the_social_media.service.feed.FeedServiceImpl;
+import com.api.the_social_media.service.post.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping
-public class FeedController {
 
-    private final FeedServiceImpl feedService;
+public class ProfileController {
+
+    private final PostServiceImpl postService;
     private final CommentServiceImpl commentService;
 
     @Autowired
-    public FeedController(FeedServiceImpl feedService , CommentServiceImpl commentService) {
-        this.feedService = feedService;
+    public ProfileController(PostServiceImpl postService, CommentServiceImpl commentService) {
+        this.postService = postService;
         this.commentService = commentService;
     }
 
-    @GetMapping("/apiV1/feed")
-    public ResponseEntity<List<PostResponseDTO>> getAllPosts(@RequestBody PostDTO postDTO){
+    @GetMapping("/apiV1/{userId}/post")
+    public ResponseEntity<List<PostResponseDTO>>getAllPostsByUser(@PathVariable Long userId){
 
-        List<Post>posts = feedService.findAllPosts();
+        List<Post> posts = postService.getPostByUser(userId);
 
         List<PostResponseDTO> responseDTOS = posts.stream().map(post -> {
 
@@ -51,10 +45,10 @@ public class FeedController {
                     }).collect(Collectors.toList());
 
 
-            return new PostResponseDTO(firstName , content , quantityLike , commentDTOs);
-        }).collect(Collectors.toList());
+                return new PostResponseDTO(firstName , content , quantityLike , commentDTOs);
+            }).collect(Collectors.toList());
 
-        return new ResponseEntity<>(responseDTOS , HttpStatus.OK);
+            return new ResponseEntity<>(responseDTOS , HttpStatus.OK);
 
     }
 

@@ -18,4 +18,6 @@ public interface PostService {
 
     List<Post>getPostByUser(Long id);
 
+
+
 }

@@ -36,8 +36,10 @@ public class AuthConfig {
                         .requestMatchers(HttpMethod.POST,"/apiV1/like").permitAll()
                         .requestMatchers(HttpMethod.POST,"/apiV1/comment").permitAll()
                         .requestMatchers(HttpMethod.GET,"/apiV1/feed").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/apiV1/{userId}/post").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                // .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
 
     }

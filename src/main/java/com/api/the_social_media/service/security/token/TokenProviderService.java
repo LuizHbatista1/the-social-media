@@ -23,17 +23,17 @@ public class TokenProviderService {   // classe para gerar o token JWT
 
     public String generateAccessToken(User user) {
 
-        /* var scope = user.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+        var scope = user.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(""));
 
-         */
+
 
         try {
             Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET);
             return JWT.create()
                     .withSubject(user.getUsername())
                     .withClaim("username", user.getUsername())
-                    // .withClaim("scope",scope)
+                    .withClaim("scope",scope)
                     .withExpiresAt(genAccessExpirationDate())
                     .sign(algorithm);
 
